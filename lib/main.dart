@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
@@ -8,16 +10,10 @@ void main()=>runApp(new AppGPS());
 
 class AppGPS extends StatefulWidget {
   @override
-  _AppGPSState createState() => _AppGPSState();
-  Widget build(BuildContext context){
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
+  AppGPSState createState() => AppGPSState();
 }
 
-class MyApp extends StatefulWidget{
+/*class MyApp extends StatefulWidget{
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -58,11 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-}
+}*/
 
 
-class _AppGPSState extends State<AppGPS> {
+class AppGPSState extends State<AppGPS> {
+  Completer<GoogleMapController> _controller = Completer();
+  static const LatLng _center = const LatLng(45.521563, -122.677433);
 
+  void _onMapCreated(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
+  //GoogleMapController mapController;
   final  mainReference  =FirebaseDatabase.instance.reference();
   List<User> users=new List<User>();
   Position currentPosition;
@@ -87,24 +90,20 @@ class _AppGPSState extends State<AppGPS> {
     users[users.indexOf(oldUser)]=user;
   }
 
-  _AppGPSState(){
+  AppGPSState(){
     read();
   }
 
-  void onMapCreated(controller) {
-    setState(() {
-    });
-  }
-
-  void onMapCreated(controller) {
+  /*void onMapCreated(controller) {
     setState(() {
       mapController=controller;
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    GoogleMapController mapController;
+    double long=25.166516;
+    double lat=74.6556616;
     return MaterialApp(
       home: Scaffold(
         appBar: new AppBar(title: new Text('PruebaGPS'),),
@@ -115,21 +114,19 @@ class _AppGPSState extends State<AppGPS> {
               setState(() {
                 currentPosition=currPos;
                 add(new User('user2',currentPosition.latitude,currentPosition.longitude));
+                lat=currentPosition.latitude;
+                long=currentPosition.longitude;
               });
             });
           },
         ),
-        body: Stack(
-          children: <Widget>[
-            GoogleMap(
-              onMapCreated: onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(45.16165, 17.646651),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+                target: _center,
                 zoom: 15.0,
-              ),
-            )
-          ],
-        ),
+          ),
+        )
       ),
     );
   }
