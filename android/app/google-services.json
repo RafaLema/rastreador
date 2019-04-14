@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "280728701625",
+    "firebase_url": "https://rastreador-496ac.firebaseio.com",
+    "project_id": "rastreador-496ac",
+    "storage_bucket": "rastreador-496ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280728701625:android:cb1185748b56f8b7",
+        "android_client_info": {
+          "package_name": "ontaneda.flavio.prueba_gps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280728701625-daakene8i3sqhtidag4od1al2j471kfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvIhr1SiBWftbnBQcW1Zxf-yFeaJwO2iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280728701625-daakene8i3sqhtidag4od1al2j471kfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
