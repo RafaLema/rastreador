@@ -27,13 +27,13 @@ dependencies:
   geolocator: ^3.0.1
   firebase_core: ^0.3.4
   cloud_firestore: ^0.9.13+1
-
+  yaml: ^2.1.15
+  google_maps_flutter: ^0.5.7
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
